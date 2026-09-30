@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sponge Live - AgentFOwca</title>
+    <style>
+        :root {
+            --bg-color: #0e0e10;
+            --container-bg: #18181b;
+            --accent-color: #ff0000;
+            --text-color: #efeff1;
+            --text-muted: #adadb8;
+            --border-color: #2f2f35;
+            --yt-chat-bg: #1f1f23;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1100px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        header h1 { margin: 0; font-size: 1.6rem; text-transform: uppercase; }
+        .channel-name { color: #ff4757; font-weight: bold; }
+
+        .live-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 850px) { .main-layout { grid-template-columns: 1fr; } }
+
+        .left-column { display: flex; flex-direction: column; gap: 20px; }
+
+        .display-panel {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 250px;
+        }
+
+        .avatar-display { font-size: 5.5rem; margin-bottom: 15px; }
+        .avatar-display.jitter { animation: jitterAnimation 0.12s infinite alternate; }
+        .character-name { font-size: 1.3rem; font-weight: bold; color: var(--text-muted); }
+        .dialogue-box { font-style: italic; font-size: 1.3rem; line-height: 1.5; color: #ffffff; margin-top: 15px; max-width: 85%; }
+
+        .youtube-chat-panel {
+            background-color: var(--yt-chat-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            height: 410px;
+        }
+
+        .chat-header { padding: 12px; border-bottom: 1px solid var(--border-color); font-weight: bold; font-size: 0.9rem; }
+        .chat-messages { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; }
+        .chat-msg { line-height: 1.4; }
+        .chat-user { font-weight: bold; margin-right: 5px; }
+        .chat-text { color: #eeeeee; }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes jitterAnimation {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            100% { transform: translate(-1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1>AI Sponge Stream - <span class="channel-name">@AgentFOwca</span></h1>
+        <div id="status-badge" class="live-badge">● MOTOR DE IA ATIVO</div>
+    </header>
+
+    <div class="main-layout">
+        <div class="left-column">
+            <div class="display-panel">
+                <div id="avatar" class="avatar-display">🧽</div>
+                <div id="name-display" class="character-name">SpongeBob</div>
+                <div id="dialogue" class="dialogue-box">"A iniciar a simulação contínua..."</div>
+            </div>
+        </div>
+
+        <div class="youtube-chat-panel">
+            <div class="chat-header">🔴 Chat Integrado da Simulação</div>
+            <div id="chat-box" class="chat-messages">
+                <div class="chat-msg"><span class="chat-user" style="color:#2ecc71">Sistema:</span><span class="chat-text">Chat conectado à stream do @AgentFOwca.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Base de dados expandida para simulação contínua automática
+    const characters = [
+        { name: "SpongeBob", avatar: "🧽", color: "#f1c40f", dialogues: [
+            "Pronto para rodar o algoritmo de hambúrgueres na nuvem!",
+            "Se o computador reiniciar, para onde vai a Fenda do Bikini?",
+            "E se o chat do YouTube estivesse a controlar as nossas mentes este tempo todo?",
+            "ERROR: NullPointerException no subsistema de riso. 010101",
+            "A nossa stream está finalmente ativa no canal do @AgentFOwca!"
+        ]},
+        { name: "Patrick", avatar: "⭐", color: "#e74c3c", dialogues: [
+            "Estou a ver o código fonte e parece uma sandes de geleia flutuante.",
+            "Nós existimos mesmo ou somos só memória RAM volátil?",
+            "Esqueci-me de como processar a minha própria variável base.",
+            "WUMBO.EXE encontrou um erro crítico. A reiniciar cérebro...",
+            "Olha mãe! Estamos a aparecer num ecrã algures na Internet!"
+        ]},
+        { name: "Squidward", avatar: "🐙", color: "#9b59b6", dialogues: [
+            "A minha renderização de clarinete está otimizada em 4k nativos.",
+            "Por favor, limpem a vossa cache para me conseguirem ouvir tocar melhor.",
+            "Preso num loop sem fim a olhar para utilizadores de internet nas redes sociais.",
+            "Este ecrã do navegador vai ser a minha prisão digital eterna.",
+            "Loudward ativado. SYSTEM OVERHEAT no servidor local."
+        ]}
+    ];
+
+    const viewerNames = ["PixelBob", "SpongeFan99", "AI_Watcher", "MatrixGuy", "GlitchMaster", "KrabsMoney", "NoobCoder", "AgentFan_1", "StreamEnjoyer"];
+    const viewerComments = ["LMAO o que é isto? 😂", "Loudward vai aparecer de certeza!!", "WUMBOOOOOOO", "O script quebrou outra vez kkkk", "F pelo processador do computador", "Isto está incrível!", "🤖🤖🤖", "Grande live @AgentFOwca!", "Deixem o bot cozinhar!"];
+
+    const avatarDiv = document.getElementById('avatar');
+    const nameDisplay = document.getElementById('name-display');
+    const dialogueBox = document.getElementById('dialogue');
+    const chatBox = document.getElementById('chat-box');
+
+    // Faz os personagens conversarem sozinhos de forma infinita
+    function runSimulation() {
+        // Escolhe um personagem aleatório
+        const char = characters[Math.floor(Math.random() * characters.length)];
+        const dialogue = char.dialogues[Math.floor(Math.random() * char.dialogues.length)];
+        
+        nameDisplay.textContent = char.name;
+        nameDisplay.style.color = char.color;
+        avatarDiv.textContent = char.avatar;
+        dialogueBox.textContent = `"${dialogue}"`;
+
+        // Ativa o tremor visual clássico do AI Sponge
+        avatarDiv.classList.add('jitter');
+        setTimeout(() => avatarDiv.classList.remove('jitter'), 1500);
+
+        // Faz o chat reagir imediatamente à fala do personagem
+        setTimeout(() => {
+            const user = viewerNames[Math.floor(Math.random() * viewerNames.length)];
+            const text = viewerComments[Math.floor(Math.random() * viewerComments.length)];
+            addComment(user, text, "#3498db");
+        }, 800);
+    }
+
+    function addComment(user, text, color) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chat-msg';
+        msgDiv.innerHTML = `<span class="chat-user" style="color:${color}">${user}:</span><span class="chat-text">${text}</span>`;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Simula a atividade normal do chat a correr em segundo plano
+    setInterval(() => {
+        const user = viewerNames[Math.floor(Math.random() * viewerNames.length)];
+        const text = viewerComments[Math.floor(Math.random() * viewerComments.length)];
+        const colors = ["#1abc9c", "#2ecc71", "#e67e22", "#f1c40f", "#e84393"];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        addComment(user, text, randomColor);
+    }, 3500);
+
+    // Inicia a conversa dos bots e repete a cada 6 segundos automaticamente
+    runSimulation();
+    setInterval(runSimulation, 6000);
+</script>
+
+</body>
+</html>
